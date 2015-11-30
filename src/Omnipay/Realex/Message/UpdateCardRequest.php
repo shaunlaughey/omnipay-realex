@@ -34,9 +34,10 @@ class UpdateCardRequest extends RemoteAbstractRequest
          * @var \Omnipay\Common\CreditCard $card
          */
         $card = $this->getCard();
-
+        // Timestamp.merchantID.payerref.ref.expirydate.cardnumber 
         //$tmp = "$timestamp.$merchantId.$orderId.$amount.$currency.$payerRef";
-        $tmp      = "$timestamp.$merchantId.$orderId...$payerRef.{$card->getBillingName()}.{$card->getNumber()}";
+        // $tmp      = "$timestamp.$merchantId.$orderId...$payerRef.{$card->getBillingName()}.{$card->getNumber()}";
+        $tmp = "$timestamp.$merchantId.$payerRef.{$this->getCardReference()}. $card->getExpiryDate("my").{$card->getNumber()}";
         $sha1hash = sha1($tmp);
         $tmp2     = "$sha1hash.$secret";
         $sha1hash = sha1($tmp2);
