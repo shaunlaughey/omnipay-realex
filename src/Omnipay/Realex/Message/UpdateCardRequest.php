@@ -31,7 +31,6 @@ class UpdateCardRequest extends RemoteAbstractRequest {
 		$card = $this->getCard();
 		// Timestamp.merchantID.payerref.ref.expirydate.cardnumber
 		$tmp = "$timestamp.$merchantId.$payerRef.{$this->getCardReference()}.{$card->getExpiryDate('my')}.{$card->getNumber()}";
-		error_log($tmp);
 		$sha1hash = sha1($tmp);
 		$tmp2 = "$sha1hash.$secret";
 		$sha1hash = sha1($tmp2);
